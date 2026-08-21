@@ -30,7 +30,7 @@ export const adultBirthDateSchema = z
   }, 'Vous devez avoir entre 18 et 100 ans')
 
 export function moneyField(min: number, max: number, label: string) {
-  return z.coerce
+  return z
     .number({ message: `${label} requis` })
     .min(min, `Minimum : ${min.toLocaleString('fr-TN')} TND`)
     .max(max, `Maximum : ${max.toLocaleString('fr-TN')} TND`)

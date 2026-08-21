@@ -41,7 +41,11 @@ export const personalStepSchema = z.object({
   birthDate: adultBirthDateSchema,
   nationalId: cinSchema,
   maritalStatus: z.enum(['single', 'married', 'divorced', 'widowed']),
-  dependents: z.coerce.number().int().min(0, 'Invalide').max(15, 'Invalide'),
+  dependents: z
+    .number({ message: 'Nombre invalide' })
+    .int()
+    .min(0, 'Invalide')
+    .max(15, 'Invalide'),
 })
 
 export const contactStepSchema = z.object({
@@ -62,13 +66,13 @@ export const employmentStepSchema = z
     cnssNumber: z.string().optional(),
     jobTitle: z.string().optional(),
     hireDate: z.string().optional(),
-    monthlySalary: z.coerce.number().optional(),
-    otherIncome: z.coerce.number().min(0).default(0),
-    existingMonthlyObligations: z.coerce.number().min(0).default(0),
+    monthlySalary: z.number({ message: 'Montant invalide' }).optional(),
+    otherIncome: z.number({ message: 'Montant invalide' }).min(0).default(0),
+    existingMonthlyObligations: z.number({ message: 'Montant invalide' }).min(0).default(0),
     businessName: z.string().optional(),
     matriculeFiscal: z.string().optional(),
-    annualRevenue: z.coerce.number().optional(),
-    yearsInBusiness: z.coerce.number().optional(),
+    annualRevenue: z.number({ message: 'Montant invalide' }).optional(),
+    yearsInBusiness: z.number({ message: 'Nombre invalide' }).optional(),
   })
   .superRefine((data, ctx) => {
     if (data.employmentStatus === 'salaried') {
