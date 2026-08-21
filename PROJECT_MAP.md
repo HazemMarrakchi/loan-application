@@ -48,7 +48,7 @@
 - [ ] **M6** KYC simulé + pad de signature
 - [ ] **M7** Récapitulatif + pré-approbation + soumission
 - [ ] **M8** Suite E2E Playwright complète
-- [ ] **M9** Polish a11y + audit prod + deploy Vercel
+- [ ] **M9** Polish a11y + audit prod (exécution locale — pas de déploiement, choix utilisateur)
 
 ## Structure
 
@@ -67,5 +67,5 @@ src/
 
 ## [ORPHANS & PENDING]
 
-- Repo GitHub + deploy Vercel à créer (fin M0)
+- Repo GitHub optionnel (choix utilisateur : pas de Vercel cette fois)
 - Provider autocomplete distant optionnel (Google Places) — abstraction prête, non branché
