@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -18,6 +19,7 @@ export default function ContactStep({ onContinue }: StepProps) {
   const {
     register,
     handleSubmit,
+    watch,
     setValue,
     formState: { errors },
   } = useForm<ContactValues>({
@@ -29,6 +31,11 @@ export default function ContactStep({ onContinue }: StepProps) {
       address: draft.address,
     },
   })
+
+  useEffect(() => {
+    const subscription = watch((values) => update(values as Partial<ApplicationDraft>))
+    return () => subscription.unsubscribe()
+  }, [watch, update])
 
   const submit = handleSubmit((values) => {
     update(values as Partial<ApplicationDraft>)

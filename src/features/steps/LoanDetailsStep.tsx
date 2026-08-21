@@ -127,7 +127,7 @@ export default function LoanDetailsStep({ onContinue }: StepProps) {
         />
         <input
           type="range"
-          aria-label="Montant souhaité (curseur)"
+          aria-label="Curseur du montant"
           min={config.minAmount}
           max={config.maxAmount}
           step={500}
@@ -144,7 +144,7 @@ export default function LoanDetailsStep({ onContinue }: StepProps) {
         />
         <input
           type="range"
-          aria-label="Durée en mois (curseur)"
+          aria-label="Curseur de la durée"
           min={config.minMonths}
           max={config.maxMonths}
           step={6}

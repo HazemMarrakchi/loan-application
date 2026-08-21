@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -22,6 +23,7 @@ export default function PersonalStep({ onContinue }: StepProps) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<PersonalValues>({
     resolver: zodResolver(personalStepSchema),
@@ -35,6 +37,11 @@ export default function PersonalStep({ onContinue }: StepProps) {
       dependents: draft.dependents,
     },
   })
+
+  useEffect(() => {
+    const subscription = watch((values) => update(values as Partial<ApplicationDraft>))
+    return () => subscription.unsubscribe()
+  }, [watch, update])
 
   const submit = handleSubmit((values) => {
     update(values as Partial<ApplicationDraft>)

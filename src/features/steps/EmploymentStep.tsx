@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -23,6 +24,7 @@ export default function EmploymentStep({ onContinue }: StepProps) {
     handleSubmit,
     watch,
     clearErrors,
+    setValue,
     formState: { errors },
   } = useForm<EmploymentValues>({
     resolver: zodResolver(employmentStepSchema),
@@ -45,13 +47,18 @@ export default function EmploymentStep({ onContinue }: StepProps) {
 
   const status = watch('employmentStatus')
 
+  useEffect(() => {
+    const subscription = watch((values) => update(values as Partial<ApplicationDraft>))
+    return () => subscription.unsubscribe()
+  }, [watch, update])
+
   const submit = handleSubmit((values) => {
     update(values as Partial<ApplicationDraft>)
     onContinue()
   })
 
   function changeStatus(next: EmploymentStatus) {
-    register('employmentStatus').onChange({ target: { value: next } } as never)
+    setValue('employmentStatus', next, { shouldDirty: true })
     clearErrors()
   }
 

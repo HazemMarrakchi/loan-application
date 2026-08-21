@@ -45,10 +45,10 @@
 - [x] **M3** Étapes 1–4 + validation temps réel
 - [x] **M4** Champs conditionnels + validations croisées inter-étapes
 - [x] **M5** Documents : dropzone, compression, previews
-- [ ] **M6** KYC simulé + pad de signature
-- [ ] **M7** Récapitulatif + pré-approbation + soumission
-- [ ] **M8** Suite E2E Playwright complète
-- [ ] **M9** Polish a11y + audit prod (exécution locale — pas de déploiement, choix utilisateur)
+- [x] **M6** KYC simulé + pad de signature
+- [x] **M7** Récapitulatif + pré-approbation + soumission
+- [x] **M8** Suite E2E Playwright complète — 5/5 vert
+- [x] **M9** Polish a11y + audit prod (exécution locale — pas de déploiement, choix utilisateur)
 
 ## Structure
 

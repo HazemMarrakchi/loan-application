@@ -38,6 +38,7 @@ function DocSlot({ kind, label, doc, busy, onFile, onRemove }: DocSlotProps) {
 
   return (
     <div
+      data-testid={`slot-${kind}`}
       onDragOver={(e) => {
         e.preventDefault()
         setDragOver(true)

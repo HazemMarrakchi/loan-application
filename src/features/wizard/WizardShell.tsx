@@ -49,7 +49,7 @@ function WizardInner() {
   function acceptResume() {
     if (!pendingResume) return
     replace(pendingResume.draft)
-    wizard.goto(Math.min(pendingResume.stepIndex, STEPS.length - 1))
+    wizard.jump(Math.min(pendingResume.stepIndex, STEPS.length - 1))
     setPendingResume(null)
     logger.info('draft resumed', { stepIndex: pendingResume.stepIndex })
   }
