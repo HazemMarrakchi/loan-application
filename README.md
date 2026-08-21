@@ -1,5 +1,7 @@
 # Dhahabi — Plateforme de demande de crédit 🇹🇳
 
+[![Démo live](https://img.shields.io/badge/%F0%9F%9A%80_D%C3%A9mo_live-hazemmarrakchi.github.io%2Floan--application-0B6B4F?style=for-the-badge)](https://hazemmarrakchi.github.io/loan-application/)
+
 Parcours de demande de prêt en ligne **production-grade** : 9 étapes, validation temps réel,
 champs conditionnels par type de crédit, documents compressés côté client, signature
 électronique, auto-save avec reprise et pré-approbation instantanée.
