@@ -4,7 +4,7 @@ import './styles/global.css'
 import App from './App'
 import { logger } from './core/logger'
 
-logger.info('application boot', { version: '0.1.0', milestone: 'M0' })
+logger.info('application boot', { version: '0.1.0', milestone: 'M2' })
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

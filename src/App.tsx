@@ -1,14 +1,4 @@
-const STEPS = [
-  'Type de prêt',
-  'Informations personnelles',
-  'Adresse & contact',
-  'Situation professionnelle',
-  'Détails du prêt',
-  'Documents justificatifs',
-  'Vérification KYC',
-  'Signature électronique',
-  'Récapitulatif & pré-approbation',
-]
+import WizardShell from './features/wizard/WizardShell'
 
 export default function App() {
   return (
@@ -33,39 +23,29 @@ export default function App() {
             </div>
           </div>
           <span className="bg-gold-soft text-ink rounded-full px-3 py-1 text-xs font-semibold">
-            M0 · Scaffold opérationnel
+            M2 · Wizard opérationnel
           </span>
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-16">
-        <p className="text-primary text-sm font-semibold tracking-wider uppercase">
-          Tunisie · Dinar (TND)
-        </p>
-        <h1 className="font-display mt-3 max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-          Votre crédit, <span className="text-primary">sans déplacement</span>.
-        </h1>
-        <p className="text-mist mt-5 max-w-xl text-lg leading-relaxed">
-          Parcours de demande en 9 étapes : validation temps réel, pièces justificatives,
-          signature électronique et pré-approbation instantanée.
-        </p>
+      <main className="mx-auto max-w-5xl px-6 py-10">
+        <div className="mb-8">
+          <p className="text-primary text-sm font-semibold tracking-wider uppercase">
+            Tunisie · Dinar (TND)
+          </p>
+          <h1 className="font-display mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Votre demande de crédit en 9 étapes
+          </h1>
+          <p className="text-mist mt-3 max-w-xl text-sm leading-relaxed">
+            Validation temps réel, pièces justificatives, signature électronique et
+            pré-approbation instantanée. Votre brouillon est sauvegardé automatiquement.
+          </p>
+        </div>
 
-        <ol className="mt-12 grid gap-3 sm:grid-cols-3">
-          {STEPS.map((step, index) => (
-            <li
-              key={step}
-              className="border-line shadow-card rounded-xl border bg-white p-4 transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              <span className="text-gold font-display text-sm font-bold">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <p className="mt-1 text-sm font-medium">{step}</p>
-            </li>
-          ))}
-        </ol>
+        <WizardShell />
       </main>
 
-      <footer className="border-line mt-16 border-t py-6 text-center">
+      <footer className="border-line mt-12 border-t py-6 text-center">
         <p className="text-mist text-xs">
           © {new Date().getFullYear()} Dhahabi · React 19 · Vite · Tailwind v4
         </p>

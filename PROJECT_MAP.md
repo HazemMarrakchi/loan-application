@@ -41,7 +41,7 @@
 
 - [x] **M0** Scaffold + versions épinglées + build vert + design tokens
 - [x] **M1** Modèle domaine + schémas Zod (3 types) + moteur éligibilité
-- [ ] **M2** Wizard shell : machine à états, progression, gardes, auto-save/reprise
+- [x] **M2** Wizard shell : machine à états, progression, gardes, auto-save/reprise
 - [ ] **M3** Étapes 1–4 + validation temps réel
 - [ ] **M4** Champs conditionnels + validations croisées inter-étapes
 - [ ] **M5** Documents : dropzone, compression, previews
