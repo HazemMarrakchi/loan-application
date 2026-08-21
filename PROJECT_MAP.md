@@ -47,7 +47,7 @@
 - [x] **M5** Documents : dropzone, compression, previews
 - [x] **M6** KYC simulé + pad de signature
 - [x] **M7** Récapitulatif + pré-approbation + soumission
-- [x] **M8** Suite E2E Playwright complète — 5/5 vert
+- [x] **M8** Suite E2E Playwright complète — 8/8 vert (3 parcours complets + validation + conditionnel + FOIR + reprise + KYC rejeté)
 - [x] **M9** Polish a11y + audit prod (exécution locale — pas de déploiement, choix utilisateur)
 
 ## Structure

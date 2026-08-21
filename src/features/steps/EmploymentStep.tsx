@@ -29,6 +29,7 @@ export default function EmploymentStep({ onContinue }: StepProps) {
   } = useForm<EmploymentValues>({
     resolver: zodResolver(employmentStepSchema),
     mode: 'onTouched',
+    shouldUnregister: true,
     defaultValues: {
       employmentStatus: draft.employmentStatus,
       employerName: draft.employerName ?? '',
@@ -96,7 +97,7 @@ export default function EmploymentStep({ onContinue }: StepProps) {
 
       <input type="hidden" {...register('employmentStatus')} />
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2" key={status}>
+      <div className="mt-8 grid gap-5 sm:grid-cols-2">
         {status === 'salaried' && (
           <>
             <TextField
