@@ -3,18 +3,19 @@ import { LOAN_TYPES } from '../../data/loanTypes'
 import { computeEligibility } from '../services/eligibility'
 
 export interface CrossStepIssue {
-  field: string
+  field: 'amount' | 'durationMonths'
   message: string
+}
+
+export function monthlyIncomeOf(draft: ApplicationDraft): number {
+  if (draft.employmentStatus === 'self_employed') return (draft.annualRevenue ?? 0) / 12
+  return draft.monthlySalary ?? 0
 }
 
 export function validateCrossStep(draft: ApplicationDraft): CrossStepIssue[] {
   const issues: CrossStepIssue[] = []
   const config = LOAN_TYPES[draft.loanType]
-
-  const monthlyIncome =
-    draft.employmentStatus === 'self_employed'
-      ? (draft.annualRevenue ?? 0) / 12
-      : (draft.monthlySalary ?? 0)
+  const monthlyIncome = monthlyIncomeOf(draft)
 
   if (monthlyIncome > 0) {
     const eligibility = computeEligibility({
@@ -41,25 +42,27 @@ export function validateCrossStep(draft: ApplicationDraft): CrossStepIssue[] {
   }
 
   if (draft.loanType === 'home') {
+    const price = draft.propertyPrice ?? 0
     const financed = draft.amount + (draft.downPayment ?? 0)
-    if ((draft.propertyPrice ?? 0) > 0 && Math.abs(financed - (draft.propertyPrice ?? 0)) > 1) {
+    if (price > 0 && financed > price) {
       issues.push({
         field: 'amount',
-        message: `Montant + apport doit égaliser le prix du bien (${(draft.propertyPrice ?? 0).toLocaleString('fr-TN')} TND)`,
+        message: `Montant + apport ne peut dépasser le prix du bien (${price.toLocaleString('fr-TN')} TND)`,
       })
     }
-    if (draft.durationMonths > 300 - (new Date().getFullYear() - new Date(draft.birthDate).getFullYear())) {
+    const age =
+      new Date().getFullYear() - new Date(draft.birthDate).getFullYear()
+    if (Number.isFinite(age) && age > 0 && draft.durationMonths / 12 > 75 - age) {
       issues.push({
         field: 'durationMonths',
-        message: 'Durée du crédit immobilier limitée par l’âge d’échéance (75 ans).',
+        message: `Avec ${age} ans, la durée maximale est de ${Math.max(0, 75 - age)} ans (échéance à 75 ans).`,
       })
     }
   }
 
   if (draft.loanType === 'business' && draft.employmentStatus === 'self_employed') {
-    const requested = draft.amount
     const revenue = draft.annualRevenue ?? 0
-    if (revenue > 0 && requested > revenue * 0.5) {
+    if (revenue > 0 && draft.amount > revenue * 0.5) {
       issues.push({
         field: 'amount',
         message: `Le montant ne peut dépasser 50 % du chiffre d’affaires annuel (${Math.floor(revenue * 0.5).toLocaleString('fr-TN')} TND)`,

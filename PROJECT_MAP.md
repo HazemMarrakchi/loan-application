@@ -43,7 +43,7 @@
 - [x] **M1** Modèle domaine + schémas Zod (3 types) + moteur éligibilité
 - [x] **M2** Wizard shell : machine à états, progression, gardes, auto-save/reprise
 - [x] **M3** Étapes 1–4 + validation temps réel
-- [ ] **M4** Champs conditionnels + validations croisées inter-étapes
+- [x] **M4** Champs conditionnels + validations croisées inter-étapes
 - [ ] **M5** Documents : dropzone, compression, previews
 - [ ] **M6** KYC simulé + pad de signature
 - [ ] **M7** Récapitulatif + pré-approbation + soumission
