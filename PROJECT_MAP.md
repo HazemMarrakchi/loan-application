@@ -40,7 +40,7 @@
 ## Jalons
 
 - [x] **M0** Scaffold + versions épinglées + build vert + design tokens
-- [ ] **M1** Modèle domaine + schémas Zod (3 types) + moteur éligibilité
+- [x] **M1** Modèle domaine + schémas Zod (3 types) + moteur éligibilité
 - [ ] **M2** Wizard shell : machine à états, progression, gardes, auto-save/reprise
 - [ ] **M3** Étapes 1–4 + validation temps réel
 - [ ] **M4** Champs conditionnels + validations croisées inter-étapes
@@ -67,5 +67,5 @@ src/
 
 ## [ORPHANS & PENDING]
 
-- Repo GitHub optionnel (choix utilisateur : pas de Vercel cette fois)
 - Provider autocomplete distant optionnel (Google Places) — abstraction prête, non branché
+- Tests unitaires vitest à ajouter en M8 avec Playwright (éligibilité + règles)
