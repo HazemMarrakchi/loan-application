@@ -6,10 +6,12 @@ import { DraftProvider, useDraft } from './DraftContext'
 import { useWizardState } from './useWizardState'
 import { STEPS } from './steps'
 import StepIndicator from './StepIndicator'
+import SuccessScreen from './SuccessScreen'
 
 function WizardInner() {
   const { draft, replace, reset } = useDraft()
   const wizard = useWizardState(STEPS.length)
+  const [submitted, setSubmitted] = useState(false)
   const [pendingResume, setPendingResume] = useState<StoredDraft | null>(null)
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null)
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -66,6 +68,21 @@ function WizardInner() {
 
   const progress = Math.round((wizard.index / (STEPS.length - 1)) * 100)
 
+  if (submitted) {
+    return (
+      <div className="shadow-card rounded-3xl border border-line bg-white p-6 sm:p-10">
+        <SuccessScreen
+          onRestart={() => {
+            clearStoredDraft()
+            reset()
+            wizard.reset()
+            setSubmitted(false)
+          }}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="shadow-card rounded-3xl border border-line bg-white p-6 sm:p-10">
       <StepIndicator
@@ -121,6 +138,8 @@ function WizardInner() {
               onContinue={handleContinue}
               label={STEPS[wizard.index].label}
               milestone={STEPS[wizard.index].milestone}
+              goto={wizard.goto}
+              onFinish={() => setSubmitted(true)}
             />
           )
         })()}

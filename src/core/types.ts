@@ -96,4 +96,5 @@ export interface ApplicationDraft {
 
   documents: StoredDocument[]
   signatureDataUrl?: string
+  kycPassed?: boolean
 }
